@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata = {
     title: 'CricTogether',
     description: 'Redeem Your Cricket Nerd',
+    manifest: '/manifest.json',
 };
 
 export default function RootLayout({ children }) {
