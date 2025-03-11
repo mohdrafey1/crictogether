@@ -90,57 +90,91 @@ export default function CreateTeamPage() {
         }
     };
 
+    // Group players by role
+    const groupPlayersByRole = (players) => {
+        return players.reduce((acc, player) => {
+            if (!acc[player.role]) {
+                acc[player.role] = [];
+            }
+            acc[player.role].push(player);
+            return acc;
+        }, {});
+    };
+
     return (
         <div className="min-h-screen bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 p-6">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-6xl mx-auto">
                 <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">
                     🏏 {contestType === 'fab-4' ? 'Fab 4' : '11 Player'} Contest
                     - Select Your Team
                 </h1>
 
-                {/* Display available players */}
-                <div className="grid gap-6">
-                    {availableTeams.map((team) => (
-                        <div
-                            key={team.team_name}
-                            className="bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow p-6 rounded-xl border border-gray-200 dark:border-gray-700"
-                        >
-                            <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
-                                {team.team_name}
-                            </h2>
-                            <ul className="space-y-2">
-                                {team.players.map((player) => (
-                                    <li
-                                        key={player.name}
-                                        className="flex items-center space-x-3"
-                                    >
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedPlayers.some(
-                                                (p) => p.name === player.name
-                                            )}
-                                            onChange={() =>
-                                                handlePlayerSelect(player)
-                                            }
-                                            className="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:bg-gray-700 dark:border-gray-600"
-                                        />
-                                        <span className="text-gray-700 dark:text-gray-300">
-                                            {player.name}{' '}
-                                            <span className="text-sm text-gray-500 dark:text-gray-400">
-                                                ({player.role})
-                                            </span>
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
+                {/* Display available teams side by side on large screens */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {availableTeams.map((team) => {
+                        const playersByRole = groupPlayersByRole(team.players);
+
+                        return (
+                            <div
+                                key={team.team_name}
+                                className="bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow p-6 rounded-xl border border-gray-200 dark:border-gray-700"
+                            >
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                                    {team.team_name}
+                                </h2>
+
+                                {/* Display players grouped by role */}
+                                {Object.entries(playersByRole).map(
+                                    ([role, players]) => (
+                                        <div key={role} className="mb-6">
+                                            <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                                                {role === 'BAT'
+                                                    ? 'Batsmen'
+                                                    : role === 'AR'
+                                                    ? 'All-Rounders'
+                                                    : 'Bowlers'}
+                                            </h3>
+                                            <ul className="space-y-2">
+                                                {players.map((player) => (
+                                                    <li
+                                                        key={player.name}
+                                                        className="flex items-center space-x-3"
+                                                    >
+                                                        <input
+                                                            type="checkbox"
+                                                            checked={selectedPlayers.some(
+                                                                (p) =>
+                                                                    p.name ===
+                                                                    player.name
+                                                            )}
+                                                            onChange={() =>
+                                                                handlePlayerSelect(
+                                                                    player
+                                                                )
+                                                            }
+                                                            className="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:bg-gray-700 dark:border-gray-600"
+                                                        />
+                                                        <span className="text-gray-700 dark:text-gray-300">
+                                                            {player.name}{' '}
+                                                            <span className="text-sm text-gray-500 dark:text-gray-400">
+                                                                ({player.role})
+                                                            </span>
+                                                        </span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                        );
+                    })}
                 </div>
 
                 {/* Save Team Button */}
                 <button
                     onClick={handleSubmit}
-                    className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg mt-6 w-full text-lg font-semibold transition-colors duration-300"
+                    className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg mt-8 w-full text-lg font-semibold transition-colors duration-300"
                 >
                     ✅ Save Team
                 </button>
