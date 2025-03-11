@@ -26,7 +26,7 @@ export default function Leaderboard() {
     return (
         <div className="min-h-screen bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 p-6">
             <div className="max-w-5xl mx-auto">
-                <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">
+                <h1 className="mt-16 text-4xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">
                     🏆 Leaderboard
                 </h1>
 
