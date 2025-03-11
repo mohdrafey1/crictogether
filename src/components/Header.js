@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
 import Auth from './Auth';
+import Link from 'next/link';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isDarkMode, setIsDarkMode] = useState(false);
-    const [username, setUsername] = useState(null);
 
     useEffect(() => {
         const storedTheme = localStorage.getItem('theme');
@@ -45,6 +45,12 @@ const Header = () => {
                     </button>
                 </div>
                 <nav className="hidden md:flex space-x-6">
+                    <Link className="" href="update-score">
+                        Update Score
+                    </Link>
+                    <Link className="" href="leaderboard">
+                        Leaderboard
+                    </Link>
                     <Auth />
                 </nav>
 
