@@ -50,9 +50,9 @@ export default function ContestPage() {
     }, [matchId, contest, username]);
 
     return (
-        <div className="min-h-screen bg-gray-100 p-6">
+        <div className="min-h-screen bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 p-6">
             <div className="max-w-4xl mx-auto">
-                <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">
+                <h1 className="text-4xl font-bold text-center text-gray-800 dark:text-gray-100 mb-8">
                     🏆{' '}
                     {contest === '11-player'
                         ? '11 Player Contest'
@@ -60,40 +60,50 @@ export default function ContestPage() {
                 </h1>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Participated Users */}
-                    <div className="bg-white shadow-md p-6 rounded-lg border border-gray-200">
-                        <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                    {/* Participated Users Card */}
+                    <div className="bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                             📋 Participated Users
                         </h2>
                         {participatedUsers.length > 0 ? (
-                            <ul className="list-disc ml-5">
+                            <ul className="space-y-2">
                                 {participatedUsers.map((team, index) => (
-                                    <li key={index} className="text-gray-700">
-                                        {team.username}
+                                    <li
+                                        key={index}
+                                        className="text-gray-700 dark:text-gray-300"
+                                    >
+                                        <span className="font-medium">
+                                            {team.username}
+                                        </span>
                                     </li>
                                 ))}
                             </ul>
                         ) : (
-                            <p className="text-gray-500">
+                            <p className="text-gray-500 dark:text-gray-400">
                                 No participants yet.
-                            </p> // ✅ Handle empty state
+                            </p>
                         )}
                     </div>
 
-                    {/* Your Team */}
-                    <div className="bg-white shadow-md p-6 rounded-lg border border-gray-200">
-                        <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                    {/* Your Team Card */}
+                    <div className="bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow p-6 rounded-xl border border-gray-200 dark:border-gray-700">
+                        <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                             👤 Your Team
                         </h2>
                         {myTeam ? (
                             <>
-                                <ul>
+                                <ul className="space-y-2">
                                     {myTeam.players.map((player, index) => (
                                         <li
                                             key={index}
-                                            className="text-gray-700"
+                                            className="text-gray-700 dark:text-gray-300"
                                         >
-                                            {player.name} ({player.role})
+                                            <span className="font-medium">
+                                                {player.name}
+                                            </span>{' '}
+                                            <span className="text-sm text-gray-500 dark:text-gray-400">
+                                                ({player.role})
+                                            </span>
                                         </li>
                                     ))}
                                 </ul>
@@ -102,7 +112,7 @@ export default function ContestPage() {
                                         onClick={() =>
                                             (window.location.href = `/match/${matchId}/contest/${contest}/create`)
                                         }
-                                        className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+                                        className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg mt-4 transition-colors duration-300"
                                     >
                                         ✏️ Edit Team
                                     </button>
@@ -113,7 +123,7 @@ export default function ContestPage() {
                                 onClick={() =>
                                     (window.location.href = `/match/${matchId}/contest/${contest}/create`)
                                 }
-                                className="bg-green-500 text-white px-4 py-2 rounded mt-4"
+                                className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg mt-4 transition-colors duration-300"
                             >
                                 ➕ Create Team
                             </button>

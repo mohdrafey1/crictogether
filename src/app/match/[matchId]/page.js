@@ -3,15 +3,33 @@
 import { useParams } from 'next/navigation';
 import { teamSchedule } from '@/utils/teamSchedule';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
 
 export default function ContestPage() {
     const params = useParams();
     const matchId = params.matchId;
+    const [formattedDate, setFormattedDate] = useState('');
 
     // Find the match details using matchId
     const match = teamSchedule.find(
         (m) => m.MatchNumber.toString() === matchId
     );
+
+    // Format the date only on the client-side
+    useEffect(() => {
+        if (match) {
+            setFormattedDate(
+                new Date(match.DateUtc).toLocaleString(undefined, {
+                    weekday: 'short',
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                })
+            );
+        }
+    }, [match]);
 
     if (!match) {
         return (
@@ -42,7 +60,7 @@ export default function ContestPage() {
                         {match.HomeTeam} 🆚 {match.AwayTeam}
                     </h2>
                     <p className="text-gray-600 dark:text-gray-300 text-sm mt-2">
-                        📅 {new Date(match.DateUtc).toLocaleString()}
+                        📅 {formattedDate || 'Loading...'}
                     </p>
                     <p className="text-gray-600 dark:text-gray-300 text-sm">
                         📍 {match.Location}
