@@ -28,6 +28,8 @@ const Header = () => {
         }
     }, [isDarkMode]);
 
+    const closeMenu = () => setIsMenuOpen(false);
+
     return (
         <header className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white shadow-md fixed w-full top-0 left-0 z-50">
             <div className="container mx-auto flex justify-between items-center py-4 px-6">
@@ -45,13 +47,13 @@ const Header = () => {
                         Home
                     </Link>
                     <Link
-                        href="update-score"
+                        href="/update-score"
                         className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
                     >
                         Update Score
                     </Link>
                     <Link
-                        href="leaderboard"
+                        href="/leaderboard"
                         className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
                     >
                         Leaderboard
@@ -91,7 +93,7 @@ const Header = () => {
             {isMenuOpen && (
                 <div
                     className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={closeMenu}
                 ></div>
             )}
 
@@ -102,7 +104,7 @@ const Header = () => {
                 } transition-transform duration-300 md:hidden flex flex-col items-start p-6 space-y-6 z-50`}
             >
                 <button
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={closeMenu}
                     className="self-end p-2 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
                     aria-label="Close Menu"
                 >
@@ -112,18 +114,21 @@ const Header = () => {
                 <Link
                     href="/"
                     className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+                    onClick={closeMenu}
                 >
                     Home
                 </Link>
                 <Link
-                    href="update-score"
+                    href="/update-score"
                     className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+                    onClick={closeMenu}
                 >
                     Update Score
                 </Link>
                 <Link
-                    href="leaderboard"
+                    href="/leaderboard"
                     className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300"
+                    onClick={closeMenu}
                 >
                     Leaderboard
                 </Link>

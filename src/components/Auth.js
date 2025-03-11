@@ -5,23 +5,32 @@ import toast from 'react-hot-toast';
 
 export default function Auth() {
     const [username, setUsername] = useState('');
+    const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
         const savedUsername = localStorage.getItem('username');
-        if (savedUsername) setUsername(savedUsername);
+        if (savedUsername) {
+            setUsername(savedUsername);
+        }
     }, []);
 
     const handleAuth = async () => {
+        if (!inputValue.trim()) {
+            toast.error('Username cannot be empty!');
+            return;
+        }
+
         const res = await fetch('/api/users', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username }),
+            body: JSON.stringify({ username: inputValue }),
         });
 
         const data = await res.json();
 
         if (res.ok) {
-            localStorage.setItem('username', username);
+            localStorage.setItem('username', inputValue);
+            setUsername(inputValue);
         }
         toast.success(data.message);
     };
@@ -29,13 +38,14 @@ export default function Auth() {
     const handleLogout = () => {
         localStorage.removeItem('username');
         setUsername('');
+        setInputValue('');
         toast.success('Logged out successfully!');
     };
 
     return (
         <div>
             {username ? (
-                <>
+                <div className="flex gap-2 justify-center items-center">
                     <div>Hii, {username}</div>
                     <button
                         onClick={handleLogout}
@@ -43,14 +53,14 @@ export default function Auth() {
                     >
                         Logout
                     </button>
-                </>
+                </div>
             ) : (
                 <>
                     <input
                         type="text"
                         placeholder="Enter your username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
                         className="border p-2 rounded"
                     />
                     <button

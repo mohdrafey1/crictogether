@@ -26,7 +26,7 @@ export default function Home() {
         <div className="min-h-screen bg-indigo-50 dark:bg-gray-900 transition-colors duration-300">
             <div className="mt-14 p-6 sm:max-w-4/5 mx-auto">
                 <h1 className="text-3xl font-bold text-center mb-6 text-gray-800 dark:text-gray-100">
-                    🏏 Upcoming Matches
+                    Upcoming Matches
                 </h1>
 
                 <div className="grid gap-6 lg:grid-cols-2">
