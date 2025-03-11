@@ -26,10 +26,24 @@ export default function Auth() {
         toast.success(data.message);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('username');
+        setUsername('');
+        toast.success('Logged out successfully!');
+    };
+
     return (
         <div>
             {username ? (
-                <>Hii, {username}</>
+                <>
+                    <div>Hii, {username}</div>
+                    <button
+                        onClick={handleLogout}
+                        className="ml-2 bg-red-500 text-white px-4 py-2 rounded"
+                    >
+                        Logout
+                    </button>
+                </>
             ) : (
                 <>
                     <input
