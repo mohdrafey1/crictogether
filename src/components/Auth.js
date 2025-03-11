@@ -65,7 +65,7 @@ export default function Auth() {
                     />
                     <button
                         onClick={handleAuth}
-                        className="ml-2 bg-blue-500 text-white px-4 py-2 rounded"
+                        className="ml-2 mt-4 lg:mt-0 bg-blue-500 text-white px-4 py-2 rounded"
                     >
                         Join
                     </button>

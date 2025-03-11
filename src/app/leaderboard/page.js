@@ -35,64 +35,71 @@ export default function Leaderboard() {
                     <h2 className="text-2xl font-bold text-center text-indigo-600 dark:text-indigo-400 py-4">
                         11 Player Contest Leaderboard
                     </h2>
-                    <table className="w-full">
-                        <thead className="bg-sky-600 dark:bg-sky-700 text-white">
-                            <tr>
-                                <th className="py-4 px-6 text-left">Rank</th>
-                                <th className="py-4 px-6 text-left">
-                                    Username
-                                </th>
-                                <th className="py-4 px-6 text-left">
-                                    Match ID
-                                </th>
-                                <th className="py-4 px-6 text-left">
-                                    Total Runs
-                                </th>
-                                <th className="py-4 px-6 text-left">
-                                    Total Wickets
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {elevenPlayerLeaderboard.length > 0 ? (
-                                elevenPlayerLeaderboard.map((user, index) => (
-                                    <tr
-                                        key={index}
-                                        className={`${
-                                            index % 2 === 0
-                                                ? 'bg-gray-50 dark:bg-gray-700'
-                                                : 'bg-white dark:bg-gray-800'
-                                        } hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200`}
-                                    >
-                                        <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
-                                            {index + 1}
-                                        </td>
-                                        <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
-                                            {user.username}
-                                        </td>
-                                        <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
-                                            {user.matchId}
-                                        </td>
-                                        <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
-                                            {user.totalRuns}
-                                        </td>
-                                        <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
-                                            {user.totalWickets}
+                    <div className="overflow-x-auto">
+                        <table className="w-full min-w-[600px]">
+                            <thead className="bg-sky-600 dark:bg-sky-700 text-white">
+                                <tr>
+                                    <th className="py-4 px-6 text-left">
+                                        Rank
+                                    </th>
+                                    <th className="py-4 px-6 text-left">
+                                        Username
+                                    </th>
+                                    <th className="py-4 px-6 text-left">
+                                        Match ID
+                                    </th>
+                                    <th className="py-4 px-6 text-left">
+                                        Total Runs
+                                    </th>
+                                    <th className="py-4 px-6 text-left">
+                                        Total Wickets
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {elevenPlayerLeaderboard.length > 0 ? (
+                                    elevenPlayerLeaderboard.map(
+                                        (user, index) => (
+                                            <tr
+                                                key={index}
+                                                className={`${
+                                                    index % 2 === 0
+                                                        ? 'bg-gray-50 dark:bg-gray-700'
+                                                        : 'bg-white dark:bg-gray-800'
+                                                } hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200`}
+                                            >
+                                                <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
+                                                    {index + 1}
+                                                </td>
+                                                <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
+                                                    {user.username}
+                                                </td>
+                                                <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
+                                                    {user.matchId}
+                                                </td>
+                                                <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
+                                                    {user.totalRuns}
+                                                </td>
+                                                <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
+                                                    {user.totalWickets}
+                                                </td>
+                                            </tr>
+                                        )
+                                    )
+                                ) : (
+                                    <tr>
+                                        <td
+                                            colSpan="5"
+                                            className="py-4 px-6 text-center text-gray-500 dark:text-gray-400"
+                                        >
+                                            No data available for 11 Player
+                                            Contest.
                                         </td>
                                     </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td
-                                        colSpan="5"
-                                        className="py-4 px-6 text-center text-gray-500 dark:text-gray-400"
-                                    >
-                                        No data available for 11 Player Contest.
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                 {/* Fab 4 Contest Table */}
@@ -100,64 +107,68 @@ export default function Leaderboard() {
                     <h2 className="text-2xl font-bold text-center text-indigo-600 dark:text-indigo-400 py-4">
                         Fab 4 Contest Leaderboard
                     </h2>
-                    <table className="w-full">
-                        <thead className="bg-sky-600 dark:bg-sky-700 text-white">
-                            <tr>
-                                <th className="py-4 px-6 text-left">Rank</th>
-                                <th className="py-4 px-6 text-left">
-                                    Username
-                                </th>
-                                <th className="py-4 px-6 text-left">
-                                    Match ID
-                                </th>
-                                <th className="py-4 px-6 text-left">
-                                    Total Runs
-                                </th>
-                                <th className="py-4 px-6 text-left">
-                                    Total Wickets
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {fab4Leaderboard.length > 0 ? (
-                                fab4Leaderboard.map((user, index) => (
-                                    <tr
-                                        key={index}
-                                        className={`${
-                                            index % 2 === 0
-                                                ? 'bg-gray-50 dark:bg-gray-700'
-                                                : 'bg-white dark:bg-gray-800'
-                                        } hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200`}
-                                    >
-                                        <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
-                                            {index + 1}
-                                        </td>
-                                        <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
-                                            {user.username}
-                                        </td>
-                                        <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
-                                            {user.matchId}
-                                        </td>
-                                        <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
-                                            {user.totalRuns}
-                                        </td>
-                                        <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
-                                            {user.totalWickets}
+                    <div className="overflow-x-auto">
+                        <table className="w-full min-w-[600px]">
+                            <thead className="bg-sky-600 dark:bg-sky-700 text-white">
+                                <tr>
+                                    <th className="py-4 px-6 text-left">
+                                        Rank
+                                    </th>
+                                    <th className="py-4 px-6 text-left">
+                                        Username
+                                    </th>
+                                    <th className="py-4 px-6 text-left">
+                                        Match ID
+                                    </th>
+                                    <th className="py-4 px-6 text-left">
+                                        Total Runs
+                                    </th>
+                                    <th className="py-4 px-6 text-left">
+                                        Total Wickets
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {fab4Leaderboard.length > 0 ? (
+                                    fab4Leaderboard.map((user, index) => (
+                                        <tr
+                                            key={index}
+                                            className={`${
+                                                index % 2 === 0
+                                                    ? 'bg-gray-50 dark:bg-gray-700'
+                                                    : 'bg-white dark:bg-gray-800'
+                                            } hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200`}
+                                        >
+                                            <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
+                                                {index + 1}
+                                            </td>
+                                            <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
+                                                {user.username}
+                                            </td>
+                                            <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
+                                                {user.matchId}
+                                            </td>
+                                            <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
+                                                {user.totalRuns}
+                                            </td>
+                                            <td className="py-4 px-6 text-gray-700 dark:text-gray-300">
+                                                {user.totalWickets}
+                                            </td>
+                                        </tr>
+                                    ))
+                                ) : (
+                                    <tr>
+                                        <td
+                                            colSpan="5"
+                                            className="py-4 px-6 text-center text-gray-500 dark:text-gray-400"
+                                        >
+                                            No data available for Fab 4 Contest.
                                         </td>
                                     </tr>
-                                ))
-                            ) : (
-                                <tr>
-                                    <td
-                                        colSpan="5"
-                                        className="py-4 px-6 text-center text-gray-500 dark:text-gray-400"
-                                    >
-                                        No data available for Fab 4 Contest.
-                                    </td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

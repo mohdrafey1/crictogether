@@ -111,76 +111,94 @@ export default function UpdateScoresPage() {
                                 </p>
 
                                 {/* Update Scores Table */}
-                                <table className="w-full mt-4">
-                                    <thead>
-                                        <tr className="bg-gray-100 dark:bg-gray-700">
-                                            <th className="p-3 text-left text-gray-700 dark:text-gray-300">
-                                                Player
-                                            </th>
-                                            <th className="p-3 text-left text-gray-700 dark:text-gray-300">
-                                                Runs
-                                            </th>
-                                            <th className="p-3 text-left text-gray-700 dark:text-gray-300">
-                                                Wickets
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {team.players.map((player, index) => (
-                                            <tr
-                                                key={index}
-                                                className="border-t border-gray-200 dark:border-gray-700"
-                                            >
-                                                <td className="p-3 text-gray-700 dark:text-gray-300">
-                                                    {player.name} ({player.role}
-                                                    )
-                                                </td>
-                                                <td className="p-3">
-                                                    <input
-                                                        type="number"
-                                                        value={player.runs}
-                                                        onChange={(e) => {
-                                                            const newTeams = [
-                                                                ...teams,
-                                                            ];
-                                                            newTeams.find(
-                                                                (t) =>
-                                                                    t.username ===
-                                                                    team.username
-                                                            ).players[
-                                                                index
-                                                            ].runs =
-                                                                e.target.value;
-                                                            setTeams(newTeams);
-                                                        }}
-                                                        className="border border-gray-300 dark:border-gray-600 p-2 rounded-lg w-20 text-center dark:bg-gray-700 dark:text-gray-100"
-                                                    />
-                                                </td>
-                                                <td className="p-3">
-                                                    <input
-                                                        type="number"
-                                                        value={player.wickets}
-                                                        onChange={(e) => {
-                                                            const newTeams = [
-                                                                ...teams,
-                                                            ];
-                                                            newTeams.find(
-                                                                (t) =>
-                                                                    t.username ===
-                                                                    team.username
-                                                            ).players[
-                                                                index
-                                                            ].wickets =
-                                                                e.target.value;
-                                                            setTeams(newTeams);
-                                                        }}
-                                                        className="border border-gray-300 dark:border-gray-600 p-2 rounded-lg w-20 text-center dark:bg-gray-700 dark:text-gray-100"
-                                                    />
-                                                </td>
+                                <div className="overflow-x-auto">
+                                    <table className="w-full min-w-[600px] mt-4">
+                                        <thead>
+                                            <tr className="bg-gray-100 dark:bg-gray-700">
+                                                <th className="p-3 text-left text-gray-700 dark:text-gray-300">
+                                                    Player
+                                                </th>
+                                                <th className="p-3 text-left text-gray-700 dark:text-gray-300">
+                                                    Runs
+                                                </th>
+                                                <th className="p-3 text-left text-gray-700 dark:text-gray-300">
+                                                    Wickets
+                                                </th>
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            {team.players.map(
+                                                (player, index) => (
+                                                    <tr
+                                                        key={index}
+                                                        className="border-t border-gray-200 dark:border-gray-700"
+                                                    >
+                                                        <td className="p-3 text-gray-700 dark:text-gray-300">
+                                                            {player.name} (
+                                                            {player.role})
+                                                        </td>
+                                                        <td className="p-3">
+                                                            <input
+                                                                type="number"
+                                                                value={
+                                                                    player.runs
+                                                                }
+                                                                onChange={(
+                                                                    e
+                                                                ) => {
+                                                                    const newTeams =
+                                                                        [
+                                                                            ...teams,
+                                                                        ];
+                                                                    newTeams.find(
+                                                                        (t) =>
+                                                                            t.username ===
+                                                                            team.username
+                                                                    ).players[
+                                                                        index
+                                                                    ].runs =
+                                                                        e.target.value;
+                                                                    setTeams(
+                                                                        newTeams
+                                                                    );
+                                                                }}
+                                                                className="border border-gray-300 dark:border-gray-600 p-2 rounded-lg w-20 text-center dark:bg-gray-700 dark:text-gray-100"
+                                                            />
+                                                        </td>
+                                                        <td className="p-3">
+                                                            <input
+                                                                type="number"
+                                                                value={
+                                                                    player.wickets
+                                                                }
+                                                                onChange={(
+                                                                    e
+                                                                ) => {
+                                                                    const newTeams =
+                                                                        [
+                                                                            ...teams,
+                                                                        ];
+                                                                    newTeams.find(
+                                                                        (t) =>
+                                                                            t.username ===
+                                                                            team.username
+                                                                    ).players[
+                                                                        index
+                                                                    ].wickets =
+                                                                        e.target.value;
+                                                                    setTeams(
+                                                                        newTeams
+                                                                    );
+                                                                }}
+                                                                className="border border-gray-300 dark:border-gray-600 p-2 rounded-lg w-20 text-center dark:bg-gray-700 dark:text-gray-100"
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            )}
+                                        </tbody>
+                                    </table>
+                                </div>
 
                                 {/* Update Scores Button */}
                                 <button
