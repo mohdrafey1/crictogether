@@ -54,7 +54,7 @@ export default function Auth() {
                         Logout
                     </button>
                 </div>
-            ) : (
+            ) : ( 
                 <>
                     <input
                         type="text"
